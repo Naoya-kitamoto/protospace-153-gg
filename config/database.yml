@@ -10,22 +10,25 @@
 #   https://dev.mysql.com/doc/refman/5.7/en/password-hashing.html
 #
 default: &default
-  adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password:
-  socket: /tmp/mysql.sock
 
 development:
   <<: *default
+    username: root
+  password:
+  host: localhost
   database: protospace_153_gg_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *default
+  <<: *default  
+  adapter: mysql2
+  username: root
+  password:
+  host: localhost
   database: protospace_153_gg_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
@@ -49,7 +52,6 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  database: protospace_153_gg_production
-  username: protospace_153_gg
-  password: <%= ENV["PROTOSPACE_153_GG_DATABASE_PASSWORD"] %>
+   <<: *default
+  adapter: postgresql
+  url: <%= ENV['DATABASE_URL'] %>
