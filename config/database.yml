@@ -15,7 +15,8 @@ default: &default
 
 development:
   <<: *default
-    username: root
+  adapter: mysql2
+  username: root
   password:
   host: localhost
   database: protospace_153_gg_development
