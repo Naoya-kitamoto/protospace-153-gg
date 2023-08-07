@@ -7,8 +7,8 @@ class PrototypesController < ApplicationController
   end
   def create
   end
-  #def index
-  #end
+  def destroy
+  end
   #def index
   #end
   #def index
