@@ -1,5 +1,7 @@
 class PrototypesController < ApplicationController
   def index
+    @prototypes = Prototype.all
+    #@prototypes = Prototype.find(1)
   end
   
   def show
