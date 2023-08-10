@@ -1,9 +1,9 @@
 class PrototypesController < ApplicationController
-  before_action :move_to_log_in, only: [:edit]
+  before_action :move_to_log_in, only: [:edit, :new]
+  before_action :move_to_show, only: [:edit]
 
   def index
     @prototypes = Prototype.all
-    #@prototypes = Prototype.find(1)
   end
   
   def show
@@ -30,7 +30,7 @@ class PrototypesController < ApplicationController
   end
 
   def edit
-    @prototype = Prototype.find(params[:id])
+
   end
 
   def update
@@ -44,11 +44,20 @@ class PrototypesController < ApplicationController
   
   private
   def prototype_params
-    params.require(:prototype).permit(:image, :prototype_name, :copy, :concept).merge(user_id: current_user.id)
+    params.require(:prototype).permit(:image, :prototype_name, :copy, :concept, :user).merge(user_id: current_user.id)
   end
+
   def move_to_log_in
     unless user_signed_in?
       redirect_to "/users/sign_in"
     end
   end
+
+  def move_to_show
+    @prototype = Prototype.find(params[:id])
+    if user_signed_in? && current_user.id != @prototype.user_id
+      redirect_to "/prototypes"
+    end
+  end
+
 end
