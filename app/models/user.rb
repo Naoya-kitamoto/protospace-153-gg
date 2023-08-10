@@ -9,4 +9,5 @@ class User < ApplicationRecord
     validates :be_in, presence: true
     validates :director, presence: true
   has_many :prototypes
+  has_many :comments
 end
