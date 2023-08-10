@@ -5,4 +5,5 @@ Rails.application.routes.draw do
    #root "articles#index"
     root to: "prototypes#index"
     resources :prototypes
+    resources :users, only: :show
 end
