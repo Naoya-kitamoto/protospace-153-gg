@@ -8,6 +8,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
       t.string :profile,            null: false, default: ""
       t.string :be_in,              null: false, default: ""
       t.string :director,           null: false, default: ""
+      
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
